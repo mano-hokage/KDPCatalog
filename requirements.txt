@@ -4,3 +4,4 @@ chromadb==0.4.24
 sentence-transformers==2.2.2
 anthropic==0.31.0
 python-dotenv==1.0.0
+numpy==1.26.4
