@@ -5,6 +5,11 @@ Runs the RAG pipeline and exposes it as a web API.
 from dotenv import load_dotenv
 load_dotenv()
 
+from openai import OpenAI
+
+openai_client = OpenAI()
+
+
 import chromadb
 from sentence_transformers import SentenceTransformer
 import anthropic
@@ -69,9 +74,12 @@ books = [
 ]
 
 def embed_text(text: str) -> list:
-    """Embed text using sentence-transformers."""
-    embedding = embedding_model.encode(text, convert_to_numpy=False)
-    return embedding.tolist()
+    """Embed text using OpenAI's embedding API."""
+    response = openai_client.embeddings.create(
+        model="text-embedding-3-small",
+        input=text
+    )
+    return response.data[0].embedding
 
 def init_catalog():
     """Index books into Chroma (called once on startup)."""
