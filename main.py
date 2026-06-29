@@ -5,15 +5,6 @@ Runs the RAG pipeline and exposes it as a web API.
 from dotenv import load_dotenv
 load_dotenv()
 
-from openai import OpenAI
-
-openai_client = OpenAI()
-
-
-import chromadb
-from sentence_transformers import SentenceTransformer
-import anthropic
-
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
@@ -21,6 +12,13 @@ import chromadb
 from sentence_transformers import SentenceTransformer
 import anthropic
 import os
+
+from openai import OpenAI
+openai_client = OpenAI()
+
+import chromadb
+from sentence_transformers import SentenceTransformer
+import anthropic
 
 # Initialize models
 embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
